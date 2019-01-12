@@ -20,6 +20,8 @@ namespace Arithmetic
         {
             this.name = name;
         }
+        public string GetName() { return name; }
+
         public override Number Evaluate(Dictionary<string, object> vars)
         {
             object value = vars[name];
@@ -35,12 +37,28 @@ namespace Arithmetic
         private Expression left;
         private char op;
         private Expression right;
+        private int depth;
 
-        public Operation(Expression left, char op, Expression right)
+        public void Setdepth(int depth) { this.depth = depth; }
+        public int Getdepth() { return this.depth; }
+
+        public void SwapBranch()
         {
-            this.left = left;
+            if (op != '+' && op != '*')
+            {
+                throw new Exception("bug.");
+            }
+            var tmp = right;
+            right = this.left;
+            left = tmp;
+        }
+
+        public Operation(Expression left, char op, Expression right, int depth)
+        {
+            this.left = left ?? throw new ArgumentNullException(nameof(left), "is null!");
             this.op = op;
-            this.right = right;
+            this.depth = depth;
+            this.right = right ?? throw new ArgumentNullException(nameof(right), "is null!");
         }
         public override Number Evaluate(Dictionary<string, object> vars)
         {
