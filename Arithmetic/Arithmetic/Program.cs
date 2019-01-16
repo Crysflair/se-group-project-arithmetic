@@ -10,9 +10,15 @@ namespace Arithmetic
     {
         static void Main(string[] args)
         {
-            Number number = new Number(3, -9);
-            Console.WriteLine(number.ToString());
+            char[] symbol_set = { '+', '/', };
+            string[] symbol_print = { "+", "÷" };
+            QuestionGenerator generator = new QuestionGenerator(
+                num_range_low: 2, num_range_high: 4,
+                use_fraction: 0.5, MaxNodeCeiling: 3,
+                symbol_set: symbol_set, symbol_print: symbol_print);
+            generator.Generate(4, "file", "file2");
             Console.Read();
+
         }
         
         

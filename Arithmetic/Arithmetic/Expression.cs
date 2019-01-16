@@ -41,6 +41,7 @@ namespace Arithmetic
 
         public void Setdepth(int depth) { this.depth = depth; }
         public int Getdepth() { return depth; }
+        public char GetOP() { return op; }
 
         public void SwapBranch()
         {

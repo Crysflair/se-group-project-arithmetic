@@ -181,7 +181,17 @@ namespace Arithmetic
 
         public override string ToString()
         {
-            return $"{Numerator.ToString()} / {Denominator.ToString()}";
+            if (Denominator != 1)
+            {
+                return $"({Numerator.ToString()}/{Denominator.ToString()})";
+            }
+            else
+            {
+                if (Numerator >= 0)
+                    return $"{Numerator.ToString()}";
+                else
+                    return $"({Numerator.ToString()})";  //给负数加括号
+            }
         }
 
 
@@ -208,7 +218,7 @@ namespace Arithmetic
             return hashCode;
         }
 
-        public static bool operator ==(Number number1, Number number2)
+        public static bool operator == (Number number1, Number number2)
         {
             return EqualityComparer<Number>.Default.Equals(number1, number2);
         }
@@ -217,5 +227,22 @@ namespace Arithmetic
         {
             return !(number1 == number2);
         }
+
+        public static bool operator > (Number number1, Number number2)
+        {
+            Number num = number1.Sub(number2);
+            if (num.Numerator * num.Denominator > 0)
+                return true;
+            else return false;
+        }
+
+        public static bool operator < (Number number1, Number number2)
+        {
+            Number num = number2.Sub(number1);
+            if (num.Numerator * num.Denominator > 0)
+                return true;
+            else return false;
+        }
+
     }
 }

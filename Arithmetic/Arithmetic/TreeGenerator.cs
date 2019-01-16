@@ -16,21 +16,39 @@ namespace Arithmetic
         //      1. If a '^' operation is created, force it to have an int power.
 
         
-        static Random rnd = new Random();
-        static char[] NodeTypes = { '+', '-', '*', '/', '^', '~' }; 
-        static string[] VariableNames = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p" };
+        private static Random rnd = new Random();
+        private static readonly char[] NodeTypes_supported = { '+', '-', '*', '/', '^', '~' }; 
+        private static readonly string[] VariableNames = { "a", "b", "c", "d", "e",
+                                          "f", "g", "h", "i", "j",
+                                          "k", "l", "m", "n", "o",
+                                          "p", "q", "r", "s", "t",
+                                          "u", "v", "w", "x", "y", "z" };
 
         // Constructor
         private int VariableCur;
         private List<Tuple<string, string>> SBpairs;
         private List<string> IntNodes;
         private bool is_Generated;
-        public TreeGenerator()
+        private char[] NodeTypes;
+        public TreeGenerator(char[] nodetypes = null)
         {
             is_Generated = false;
             VariableCur = 0;
             SBpairs = new List<Tuple<string, string>>();
             IntNodes = new List<string>();
+            if (nodetypes == null)
+            {
+                NodeTypes = NodeTypes_supported;
+            }
+            else // check and set symbol set.
+            {
+                foreach(char sym in nodetypes)
+                {
+                    if (Array.IndexOf(NodeTypes_supported, sym) == -1)
+                        throw new ArgumentException("Input symbol set not supported!");
+                }
+                NodeTypes = nodetypes;
+            }
         }
 
         // make sure: Only generate a tree once 
@@ -38,8 +56,9 @@ namespace Arithmetic
         {
             if (is_Generated)
                 throw new Exception("this tree is already generated!");
-            
-            int MaxNode = 1 + rnd.Next(MaxNodeCeiling);
+
+            // int MaxNode = 1 + rnd.Next(MaxNodeCeiling);
+            int MaxNode = MaxNodeCeiling;
             Expression root = null;
             GenerateNode(ref root, ref MaxNode);
             is_Generated = true;
@@ -149,6 +168,15 @@ namespace Arithmetic
                 }
 
             }
+        }
+
+        public List<Tuple<string, string>> get_SBpairs()
+        {
+            return SBpairs;
+        }
+        public List<string> get_IntNodes()
+        {
+            return IntNodes;
         }
     }
 }

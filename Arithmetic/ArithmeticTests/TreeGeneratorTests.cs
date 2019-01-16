@@ -52,5 +52,14 @@ namespace Arithmetic.Tests
             Assert.AreEqual(generator.GetNextVariableName(), "b");
             Assert.AreEqual(generator.GetNextVariableName(), "c");
         }
+
+        [TestMethod()]
+        public void TreeGeneratorTest()
+        {
+            char[] NodeTypes1 = { '+', '-', '*' };
+            char[] NodeTypes2 = { '$', '-', '*' };
+            var valid = new TreeGenerator(NodeTypes1);
+            Assert.ThrowsException<ArgumentException>(() => new TreeGenerator(NodeTypes2));
+        }
     }
 }
