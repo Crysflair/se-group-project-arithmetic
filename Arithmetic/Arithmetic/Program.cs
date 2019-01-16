@@ -10,6 +10,11 @@ namespace Arithmetic
     {
         static void Main(string[] args)
         {
+            Number number = new Number(3, -9);
+            Console.WriteLine(number.ToString());
+            Console.Read();
         }
+        
+        
     }
 }

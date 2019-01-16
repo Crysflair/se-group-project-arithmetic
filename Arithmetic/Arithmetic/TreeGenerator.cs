@@ -19,15 +19,22 @@ namespace Arithmetic
         static string[] VariableNames = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p" };
 
         // private attribute: for an instance
-        private int VariableCur = 0;
+        private int VariableCur;
         private List<Tuple<string, string>> SBpairs;
         private List<string> IntNodes;
-        
+        public TreeGenerator()
+        {
+            VariableCur = 0;
+            SBpairs = new List<Tuple<string, string>>();
+            IntNodes = new List<string>();
+        }
+
         public Expression Generate(ref int MaxNode)
         {
             // restore variables
             VariableCur = 0;
             SBpairs.Clear();
+            IntNodes.Clear();
 
             // start running
             Expression root = null;
@@ -54,7 +61,7 @@ namespace Arithmetic
             {
                 Console.WriteLine("Out of range of 'VariableNames' table! (Other bugs possible)");
                 Console.WriteLine(e.ToString());
-                throw e;
+                throw;
             }
         }
 
