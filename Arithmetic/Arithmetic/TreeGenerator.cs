@@ -9,49 +9,58 @@ namespace Arithmetic
     public class TreeGenerator
     {
         // Description:
-        // 1. Right subtree is deeper than left subtree, as long as one of them is Operation.
-        // 2. If they are both VariableReference, register the "smaller-bigger" pair to SBpairs.
-        // 3. If a '^' operation is created, force it to have an int power.
+        // For '+' and '*':
+        //      1. Right subtree is **deeper** than left subtree, as long as one of them is Operation.
+        //      2. If they are both VariableReference, register the "smaller-bigger" pair to SBpairs.
+        // For '^'
+        //      1. If a '^' operation is created, force it to have an int power.
 
-        //   variable: for the class
+        
         static Random rnd = new Random();
-        static char[] NodeTypes = { '+', '-', '*', '/', '^', '~' };
+        static char[] NodeTypes = { '+', '-', '*', '/', '^', '~' }; 
         static string[] VariableNames = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p" };
 
-        // private attribute: for an instance
+        // Constructor
         private int VariableCur;
         private List<Tuple<string, string>> SBpairs;
         private List<string> IntNodes;
+        private bool is_Generated;
         public TreeGenerator()
         {
+            is_Generated = false;
             VariableCur = 0;
             SBpairs = new List<Tuple<string, string>>();
             IntNodes = new List<string>();
         }
 
-        public Expression Generate(ref int MaxNode)
+        // make sure: Only generate a tree once 
+        public Expression Generate(int MaxNodeCeiling)
         {
-            // restore variables
-            VariableCur = 0;
-            SBpairs.Clear();
-            IntNodes.Clear();
-
-            // start running
+            if (is_Generated)
+                throw new Exception("this tree is already generated!");
+            
+            int MaxNode = 1 + rnd.Next(MaxNodeCeiling);
             Expression root = null;
             GenerateNode(ref root, ref MaxNode);
+            is_Generated = true;
             return root; 
         }
 
+        // facility
         private static int GetNodeDepth(ref Expression exp)
         {
             if (exp is VariableReference)
                 return 0;
             else if (exp is Operation)
                 return ((Operation)exp).Getdepth();
-            else throw new Exception("Bug.");
+            else if (exp == null)
+                throw new NullReferenceException("in GetNodeDepth: exp is Null");
+            else
+                throw new Exception("in GetNodeDepth: unknown Bug.");
         }
 
-        private string GetNextVariableName()
+        // facility
+        public string GetNextVariableName()
         {
             try
             {
@@ -65,16 +74,18 @@ namespace Arithmetic
             }
         }
 
-        private void GenerateIntVariable(ref Expression right)
+        // facility: assign a VariableReference to leaf Node. Register int if need.
+        private void GenerateIntVariable(ref Expression leaf)
         {
-            right = new VariableReference(GetNextVariableName());
-            IntNodes.Add(((VariableReference)right).GetName());
+            leaf = new VariableReference(GetNextVariableName());
+            IntNodes.Add(((VariableReference)leaf).GetName());
         }
         private void GenerateVariable(ref Expression leaf)
         {
             leaf = new VariableReference(GetNextVariableName());
         }
 
+        // CORE CODE
         private void GenerateNode(ref Expression parent, ref int NodeRemain)
         {
             char nodetype = NodeTypes[rnd.Next(NodeTypes.Length)];
@@ -121,6 +132,7 @@ namespace Arithmetic
                                 ((VariableReference)left).GetName(),
                                 ((VariableReference)right).GetName()
                                 ));
+                            parent = new Operation(left, nodetype, right, depth);
                         }
                         else
                         {
