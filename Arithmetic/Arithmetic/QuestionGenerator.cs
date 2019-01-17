@@ -9,6 +9,11 @@ namespace Arithmetic
 {
     public class QuestionGenerator
     {
+        // Description:
+        // 1. this class recieve specifications for question generation. This can be set only once.
+        // 2. can generate differenct cnt of questions for multiple time.
+        // 3. those questions are add to file in an APPEND manner, with a surplus blank line.
+        // 4. if the user want to regenerate everything, delete those files via Question provider.
 
         private List<string> Expression_in_symbol;
         private List<string> Expression_in_number;
@@ -53,9 +58,7 @@ namespace Arithmetic
         }
 
         // CORE CODE. This can be generated for multiple time!
-        public void Generate(
-                int generate_cnt,                             // 生成多少道题目
-                string question_path, string answer_path)     // 题目和答案分别写入文件路径
+        public void Generate(int generate_cnt)            
         {
             // initiate(refresh)
             Expression_in_number = new List<string>();
@@ -89,9 +92,11 @@ namespace Arithmetic
                 var SBpairs = generator.get_SBpairs();
                 var Int_Node = generator.get_IntNodes();
                 int symbol_to_number_failcnt = 0;
+                int symbol_to_number_succeedcnt = 0;
+
                 while (generate_cnt > 0)
                 {
-                    // 生成一种合法的赋值
+                    // 为当前表达式符号生成一种合法的赋值
                     Dictionary<string, object> Ref_to_Number = Assign_Ref_Value(num_range_low, num_range_high, use_fraction, SBpairs, Int_Node);
                     string expression_in_number = Fill_number(expression_in_symbol, Ref_to_Number);
 
@@ -100,6 +105,7 @@ namespace Arithmetic
                         symbol_to_number_failcnt += 1;
                         if (symbol_to_number_failcnt > 5) //如果失败太多次, 退出循环并请求生成新的字符串符号
                         {
+                            symbol_to_number_failcnt = 0;
                             need_new_expression = true;
                             break;
                         }
@@ -110,31 +116,42 @@ namespace Arithmetic
                         Expression_in_number.Add(expression_in_number);
                         Ans.Add(expression.Evaluate(Ref_to_Number).ToString());
                         generate_cnt--;
+
+                        symbol_to_number_succeedcnt++;
+                        if (symbol_to_number_succeedcnt>100)    // if use a patern too many times, change.
+                        {
+                            symbol_to_number_succeedcnt = 0;
+                            need_new_expression = true;
+                            break;
+                        }
                     }
                 }
             }
-
-            // write to file TODO
-            // Now is TESTING region ############
-            foreach (string exp_symbol in Expression_in_symbol)
-            {
-                Console.WriteLine(exp_symbol);
-            }Console.WriteLine("");
-
-            foreach (string exp_number in Expression_in_number)
-            {
-                Console.WriteLine(exp_number);
-            }
-            Console.WriteLine("");
-            foreach (string ans in Ans)
-            {
-                Console.WriteLine(ans);
-            }
-            Console.WriteLine("");
+            //Now is TESTING region ############
+            //bool testing = false;
+            //if (testing)
+            //{
+            //    foreach (string exp_symbol in Expression_in_symbol)
+            //    {
+            //        Console.WriteLine(exp_symbol);
+            //    }
+            //    Console.WriteLine("");
+            //
+            //    foreach (string exp_number in Expression_in_number)
+            //    {
+            //        Console.WriteLine(exp_number);
+            //    }
+            //    Console.WriteLine("");
+            //    foreach (string ans in Ans)
+            //    {
+            //        Console.WriteLine(ans);
+            //    }
+            //    Console.WriteLine("");
+            //}
             // ################### TESTING region
-
         }
-
+        
+        // facility: 填充数字值和表达式自定义符号
         public string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
         {
             foreach (KeyValuePair<string, object> entry in Ref_to_Number)
@@ -149,7 +166,7 @@ namespace Arithmetic
             return expression_in_symbol;
         }
 
-        // 生成合法赋值
+        // facility: 生成合法赋值
         public static Dictionary<string, object> Assign_Ref_Value(
             int num_range_low, int num_range_high, double use_fraction,
             List<Tuple<string, string>> SBpairs, List<string> Int_Node)
@@ -202,7 +219,7 @@ namespace Arithmetic
             return Ref_to_Number;
         }
 
-        // 生成表达式符号字符串
+        // facility:生成表达式符号字符串
         private static readonly Dictionary<char, int> op_priority = new Dictionary<char, int> {
             {'#', 0 },
             {'+', 1 },
@@ -227,6 +244,39 @@ namespace Arithmetic
                     return result;
                 else return "(" + result + ")";
             }
+        }
+
+        // Save to file (Append Mode)
+        public void Save_to_file(string question_path, string answer_path)     // 题目和答案分别写入文件的路径
+        {
+            if (Ans.Count == 0)
+            {
+                throw new Exception("Empty expression list! Please call Generate before Save_to_file!");
+            }
+
+            using (FileStream fs = File.Open(question_path, FileMode.OpenOrCreate))
+            {
+                fs.Seek(0, SeekOrigin.End);
+                foreach (string expression_in_number in Expression_in_number)
+                {
+                    AddText(fs, expression_in_number + "\n");
+                }
+            }
+            using (FileStream fs = File.Open(answer_path, FileMode.OpenOrCreate))
+            {
+                fs.Seek(0, SeekOrigin.End);
+                foreach (string ans in Ans)
+                {
+                    AddText(fs, ans + "\n");
+                }
+            }
+        }
+        
+        // facility: write string to file
+        private static void AddText(FileStream fs, string value)
+        {
+            byte[] info = new UTF8Encoding(true).GetBytes(value);
+            fs.Write(info, 0, info.Length);
         }
     }
 }
