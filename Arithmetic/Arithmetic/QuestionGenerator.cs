@@ -12,7 +12,7 @@ namespace Arithmetic
         // Description:
         // 1. this class recieve specifications for question generation. This can be set only once.
         // 2. can generate differenct cnt of questions for multiple time.
-        // 3. those questions are add to file in an APPEND manner, with a surplus blank line.
+        // 3. those questions are save to file in an WRITE manner, with a surplus blank line.
         // 4. if the user want to regenerate everything, delete those files via Question provider.
 
         private List<string> Expression_in_symbol;
@@ -33,9 +33,10 @@ namespace Arithmetic
         private char[] symbol_set;
         private string[] symbol_print;
 
-        // Constructor: check and save arguments
+        
+        //// Constructor: check and save arguments
         public QuestionGenerator(
-            int num_range_low, int num_range_high,        // 使用整数的数字范围
+            int num_range_low, int num_range_high,        // 使用整数的数字范围 [)
             double use_fraction,                           // 使用(真)分数的比例
             int MaxNodeCeiling,                           // 最多使用多少运算符(不多于10)
             char[] symbol_set,                            // 使用运算符种类, 如 [+, -, *, /, ^]
@@ -57,7 +58,7 @@ namespace Arithmetic
             this.symbol_print = symbol_print;
         }
 
-        // CORE CODE. This can be generated for multiple time!
+        //// CORE CODE. This can be generated for multiple time!
         public void Generate(int generate_cnt)            
         {
             // initiate(refresh)
@@ -127,32 +128,10 @@ namespace Arithmetic
                     }
                 }
             }
-            //Now is TESTING region ############
-            //bool testing = false;
-            //if (testing)
-            //{
-            //    foreach (string exp_symbol in Expression_in_symbol)
-            //    {
-            //        Console.WriteLine(exp_symbol);
-            //    }
-            //    Console.WriteLine("");
-            //
-            //    foreach (string exp_number in Expression_in_number)
-            //    {
-            //        Console.WriteLine(exp_number);
-            //    }
-            //    Console.WriteLine("");
-            //    foreach (string ans in Ans)
-            //    {
-            //        Console.WriteLine(ans);
-            //    }
-            //    Console.WriteLine("");
-            //}
-            // ################### TESTING region
         }
         
         // facility: 填充数字值和表达式自定义符号
-        public string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
+        private string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
         {
             foreach (KeyValuePair<string, object> entry in Ref_to_Number)
             {
@@ -167,7 +146,7 @@ namespace Arithmetic
         }
 
         // facility: 生成合法赋值
-        public static Dictionary<string, object> Assign_Ref_Value(
+        private static Dictionary<string, object> Assign_Ref_Value(
             int num_range_low, int num_range_high, double use_fraction,
             List<Tuple<string, string>> SBpairs, List<string> Int_Node)
         {
@@ -183,7 +162,10 @@ namespace Arithmetic
                     //Note: the range of Numerator and Denominator are set to be the same as integar for convienience
                     int numerator = rnd.Next(num_range_high - num_range_low) + num_range_low;
                     int denominator = rnd.Next(num_range_high - num_range_low) + num_range_low;
-                    Ref_to_Number[var_name] = new Number(numerator, denominator);
+                    if (numerator < denominator)
+                        Ref_to_Number[var_name] = new Number(numerator, denominator);
+                    else
+                        Ref_to_Number[var_name] = new Number(denominator, numerator);
                 }
                 else
                 {
@@ -228,7 +210,7 @@ namespace Arithmetic
             {'/', 2 },
             {'^', 3 }
         };
-        public static string Tree_to_Symbol_string(Expression root, char base_op = '#')
+        private static string Tree_to_Symbol_string(Expression root, char base_op = '#')
         {
             if (root is VariableReference)
                 return (root as VariableReference).GetName();
@@ -246,37 +228,14 @@ namespace Arithmetic
             }
         }
 
-        // Save to file (Append Mode)
-        public void Save_to_file(string question_path, string answer_path)     // 题目和答案分别写入文件的路径
+        //// CORE CODE: 返回*已经生成*的题目字符串
+        public Tuple<List<string>, List<string>> Get_QA_pairs()
         {
             if (Ans.Count == 0)
             {
                 throw new Exception("Empty expression list! Please call Generate before Save_to_file!");
             }
-
-            using (FileStream fs = File.Open(question_path, FileMode.OpenOrCreate))
-            {
-                fs.Seek(0, SeekOrigin.End);
-                foreach (string expression_in_number in Expression_in_number)
-                {
-                    AddText(fs, expression_in_number + "\n");
-                }
-            }
-            using (FileStream fs = File.Open(answer_path, FileMode.OpenOrCreate))
-            {
-                fs.Seek(0, SeekOrigin.End);
-                foreach (string ans in Ans)
-                {
-                    AddText(fs, ans + "\n");
-                }
-            }
-        }
-        
-        // facility: write string to file
-        private static void AddText(FileStream fs, string value)
-        {
-            byte[] info = new UTF8Encoding(true).GetBytes(value);
-            fs.Write(info, 0, info.Length);
+            return new Tuple<List<string>, List<string>>(Expression_in_number, Ans);
         }
     }
 }
