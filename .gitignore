@@ -4,3 +4,6 @@
 
 /Arithmetic/.vs/Arithmetic/v15
 /Arithmetic/Arithmetic/obj/Debug
+/Arithmetic/Arithmetic/bin/Debug
+/Arithmetic/ArithmeticTests/bin/Debug
+/Arithmetic/ArithmeticTests/obj/Debug

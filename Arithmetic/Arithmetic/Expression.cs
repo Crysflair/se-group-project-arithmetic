@@ -20,6 +20,8 @@ namespace Arithmetic
         {
             this.name = name;
         }
+        public string GetName() { return name; }
+
         public override Number Evaluate(Dictionary<string, object> vars)
         {
             object value = vars[name];
@@ -30,18 +32,36 @@ namespace Arithmetic
             return (Number)value;
         }
     }
-    public class Operation : Expression
+    public class Operation : Expression, IEquatable<Operation>
     {
-        private Expression left;
+        public Expression left;
         private char op;
-        private Expression right;
+        public Expression right;
+        private int depth;
 
-        public Operation(Expression left, char op, Expression right)
+        public void Setdepth(int depth) { this.depth = depth; }
+        public int Getdepth() { return depth; }
+        public char GetOP() { return op; }
+
+        public void SwapBranch()
         {
-            this.left = left;
-            this.op = op;
-            this.right = right;
+            if (op != '+' && op != '*')
+            {
+                throw new Exception("bug.");
+            }
+            var tmp = right;
+            right = left;
+            left = tmp;
         }
+
+        public Operation(Expression left, char op, Expression right, int depth)
+        {
+            this.left = left ?? throw new ArgumentNullException(nameof(left), "is null!");
+            this.op = op;
+            this.depth = depth;
+            this.right = right ?? throw new ArgumentNullException(nameof(right), "is null!");
+        }
+
         public override Number Evaluate(Dictionary<string, object> vars)
         {
             Number x = left.Evaluate(vars);
@@ -55,6 +75,41 @@ namespace Arithmetic
                 case '^': return x.Pow(y);  
             }
             throw new Exception("Unknown operator");
+        }
+
+        // VS generated Value based Equal functions
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Operation);
+        }
+
+        public bool Equals(Operation other)
+        {
+            return other != null &&
+                   EqualityComparer<Expression>.Default.Equals(left, other.left) &&
+                   op == other.op &&
+                   EqualityComparer<Expression>.Default.Equals(right, other.right) &&
+                   depth == other.depth;
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 2097590993;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Expression>.Default.GetHashCode(left);
+            hashCode = hashCode * -1521134295 + op.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<Expression>.Default.GetHashCode(right);
+            hashCode = hashCode * -1521134295 + depth.GetHashCode();
+            return hashCode;
+        }
+
+        public static bool operator ==(Operation operation1, Operation operation2)
+        {
+            return EqualityComparer<Operation>.Default.Equals(operation1, operation2);
+        }
+
+        public static bool operator !=(Operation operation1, Operation operation2)
+        {
+            return !(operation1 == operation2);
         }
     }
 }
