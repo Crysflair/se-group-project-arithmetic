@@ -131,7 +131,7 @@ namespace Arithmetic
         }
         
         // facility: 填充数字值和表达式自定义符号
-        private string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
+        public string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
         {
             foreach (KeyValuePair<string, object> entry in Ref_to_Number)
             {
@@ -210,7 +210,7 @@ namespace Arithmetic
             {'/', 2 },
             {'^', 3 }
         };
-        private static string Tree_to_Symbol_string(Expression root, char base_op = '#')
+        public static string Tree_to_Symbol_string(Expression root, char base_op = '#')
         {
             if (root is VariableReference)
                 return (root as VariableReference).GetName();
