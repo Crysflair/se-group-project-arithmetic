@@ -20,7 +20,7 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
-            textBox3.Text = "1+1000000";//出的题目
+            textBox3.Text = "1+1000000";//出的题目 jijijijijiijijjiiijji
             textBox4.KeyDown += new KeyEventHandler(textBox4_KeyDown); 
         }
        
