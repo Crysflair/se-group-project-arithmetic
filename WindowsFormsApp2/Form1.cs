@@ -36,7 +36,7 @@ namespace WindowsFormsApp2
             this.label2.Text = currentCount.ToString().Trim();
         }
 
-        private void button3_Click(object sender, EventArgs e)//出题：确认按钮
+        private void button3_Click(object sender, EventArgs e)//出题：确认按钮[TTTRRREEEWWWQQQ]
         {
             if (textBox1.Text == "" || textBox5.Text == "")
             {
