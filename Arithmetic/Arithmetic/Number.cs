@@ -45,17 +45,22 @@ namespace Arithmetic
             if (a <= 0 || b <= 0)
                 throw new ArgumentException("invalid Gcd input!");
 
-            int i = 0;
-            if (a > b)
+            int r, t;
+            if (a < b)
             {
-                i = b;
+                t = b;
+                b = a;
+                a = t;
             }
-            else i = a;
-            while (a % i != 0 || b % i != 0)
+            while (b != 0)
             {
-                i--;
+                r = a % b;
+                a = b;
+                b = r;
+
             }
-            return i;
+            return a;
+
         }
 
         public Number Add(Number b)

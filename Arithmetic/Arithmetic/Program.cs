@@ -13,7 +13,7 @@ namespace Arithmetic
             char[] symbol_set = { '+','-','*','/','^'};
             string[] symbol_print = { "+", "-", "*", "/", "^" };
             QuestionGenerator generator = new QuestionGenerator(
-                num_range_low: -100, num_range_high: 100,
+                num_range_low: -100000, num_range_high: 100000,
                 use_fraction: 0.5, MaxNodeCeiling: 10,
                 symbol_set: symbol_set, symbol_print: symbol_print);
             generator.Generate(1000);

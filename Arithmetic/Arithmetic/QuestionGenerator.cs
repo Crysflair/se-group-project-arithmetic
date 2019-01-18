@@ -125,7 +125,7 @@ namespace Arithmetic
                             continue;   //生成新的赋值
                         }
                          
-                        if (ans.Denominator < 200 && Math.Abs(ans.Numerator) < 1000)
+                        if (ans.Denominator < 200 && Math.Abs(ans.Numerator) < num_range_high - num_range_low + 10)
                         {
                             Expression_in_number.Add(expression_in_number);
                             Ans.Add(ans.ToString());
