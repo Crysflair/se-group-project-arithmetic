@@ -8,8 +8,8 @@ namespace Arithmetic
 {
     public class Number : IEquatable<Number>
     {
-        private readonly int Numerator;//分子
-        private readonly int Denominator;//分母
+        public readonly int Numerator;//分子
+        public readonly int Denominator;//分母
 
         public Number(int numerator, int denominator)
         {
@@ -40,40 +40,27 @@ namespace Arithmetic
             }
         }
 
-        // MysriO: 道理上没问题,有点担心效率,当然目前不重要
-        // static int GCD(int m,int n ){
-        //int r, t;
-        //if(m<n){
-        //t=n;
-        //n=m;
-        //m=t;
-        //}
-        //while(n!=0){
-        //    r = m % n;
-        //    m = n;
-        //    n = r;
-
-        //}
-        //return (m);
-        //}
-        // 你觉得这个可以吗( 网上扒的, 我也没测试)
-
         private static int Gcd(int a, int b)
         {
             if (a <= 0 || b <= 0)
                 throw new ArgumentException("invalid Gcd input!");
 
-            int i = 0;
-            if (a > b)
+            int r, t;
+            if (a < b)
             {
-                i = b;
+                t = b;
+                b = a;
+                a = t;
             }
-            else i = a;
-            while (a % i != 0 || b % i != 0)
+            while (b != 0)
             {
-                i--;
+                r = a % b;
+                a = b;
+                b = r;
+
             }
-            return i;
+            return a;
+
         }
 
         public Number Add(Number b)
@@ -120,7 +107,7 @@ namespace Arithmetic
         {
             // check b to be non-zero
             if (b.Numerator == 0)
-                throw new FormatException("b is zero! cannot divide!");
+                throw new DivideByZeroException("b is zero! cannot divide!");
             else
             {
                 Number c = new Number(this.Numerator * b.Denominator, this.Denominator * b.Numerator);
@@ -128,7 +115,7 @@ namespace Arithmetic
             }
         }
 
-        private static int IntPow(int num, int power)
+        public static int IntPow(int num, int power)
         {
             if (power <= 0)
             {
@@ -228,6 +215,7 @@ namespace Arithmetic
             return !(number1 == number2);
         }
 
+        // 自己添加的大于小于
         public static bool operator > (Number number1, Number number2)
         {
             Number num = number1.Sub(number2);

@@ -36,7 +36,7 @@ namespace Arithmetic
         
         //// Constructor: check and save arguments
         public QuestionGenerator(
-            int num_range_low, int num_range_high,        // 使用整数的数字范围 [)
+            int num_range_low, int num_range_high,        // 使用整数的数字范围 []
             double use_fraction,                           // 使用(真)分数的比例
             int MaxNodeCeiling,                           // 最多使用多少运算符(不多于10)
             char[] symbol_set,                            // 使用运算符种类, 如 [+, -, *, /, ^]
@@ -59,7 +59,7 @@ namespace Arithmetic
         }
 
         //// CORE CODE. This can be generated for multiple time!
-        public void Generate(int generate_cnt)            
+        public void Generate(int generate_cnt, int reuse_maxcnt = 5)            
         {
             // initiate(refresh)
             Expression_in_number = new List<string>();
@@ -89,6 +89,7 @@ namespace Arithmetic
                 // if not duplicate, save this expression
                 Expression_in_symbol.Add(expression_in_symbol);
 
+                // 在当前符号表达式基础上生成多个数字表达式
                 // then start generation !
                 var SBpairs = generator.get_SBpairs();
                 var Int_Node = generator.get_IntNodes();
@@ -106,31 +107,45 @@ namespace Arithmetic
                         symbol_to_number_failcnt += 1;
                         if (symbol_to_number_failcnt > 5) //如果失败太多次, 退出循环并请求生成新的字符串符号
                         {
-                            symbol_to_number_failcnt = 0;
                             need_new_expression = true;
                             break;
                         }
-                        else continue;
+                        else continue;  //生成新的赋值
                     }
-                    else // if this expression in number is brand new
+                    else // if this expression in number is brand new 
                     {
-                        Expression_in_number.Add(expression_in_number);
-                        Ans.Add(expression.Evaluate(Ref_to_Number).ToString());
-                        generate_cnt--;
-
-                        symbol_to_number_succeedcnt++;
-                        if (symbol_to_number_succeedcnt>100)    // if use a patern too many times, change.
+                        // insert if evaluable and not too difficult
+                        Number ans;
+                        try
                         {
-                            symbol_to_number_succeedcnt = 0;
-                            need_new_expression = true;
-                            break;
+                            ans = expression.Evaluate(Ref_to_Number);
                         }
+                        catch(DivideByZeroException e)
+                        {
+                            continue;   //生成新的赋值
+                        }
+                         
+                        if (ans.Denominator < 200 && Math.Abs(ans.Numerator) < num_range_high - num_range_low + 10)
+                        {
+                            Expression_in_number.Add(expression_in_number);
+                            Ans.Add(ans.ToString());
+                            generate_cnt--;
+
+                            symbol_to_number_succeedcnt++;
+                            if (symbol_to_number_succeedcnt >= reuse_maxcnt)    // if use a patern too many times, change.
+                            {
+                                need_new_expression = true;
+                                break;
+                            }
+                        }
+                        else
+                            continue;   //生成新的赋值
                     }
                 }
             }
         }
         
-        // facility: 填充数字值和表达式自定义符号
+        // facility: 使用字符串替换方法填充数字值和表达式自定义符号
         public string Fill_number(string expression_in_symbol, Dictionary<string, object> Ref_to_Number)
         {
             foreach (KeyValuePair<string, object> entry in Ref_to_Number)
@@ -158,19 +173,19 @@ namespace Arithmetic
             {
                 if (rnd.NextDouble() < use_fraction)
                 {
-                    //generate a real fraction
-                    //Note: the range of Numerator and Denominator are set to be the same as integar for convienience
-                    int numerator = rnd.Next(num_range_high - num_range_low) + num_range_low;
-                    int denominator = rnd.Next(num_range_high - num_range_low) + num_range_low;
-                    if (numerator < denominator)
+                    //真分数
+                    //分母2,3,4,5
+                    int denominator = rnd.Next(2,6);
+                    int numerator = rnd.Next(1, denominator-1);
+                    if (rnd.NextDouble() < 0.5)
                         Ref_to_Number[var_name] = new Number(numerator, denominator);
                     else
-                        Ref_to_Number[var_name] = new Number(denominator, numerator);
+                        Ref_to_Number[var_name] = new Number(-numerator, denominator);
                 }
                 else
                 {
-                    //generate an integar.
-                    int value = rnd.Next(num_range_high - num_range_low) + num_range_low;
+                    //整数.
+                    int value = rnd.Next(num_range_low, num_range_high);
                     Ref_to_Number[var_name] = new Number(value, 1);
                 }
             }
@@ -193,8 +208,8 @@ namespace Arithmetic
             // adjustment for (small) Integar restriction
             foreach (string var_name in Int_Node)
             {
-                //generate an integar. -3 ~ 3
-                int value = rnd.Next(7) -3;
+                //generate an integar. 0,1,2
+                int value = rnd.Next(0, 2);
                 Ref_to_Number[var_name] = new Number(value, 1);
             }
 
