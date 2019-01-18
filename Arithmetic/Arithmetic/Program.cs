@@ -10,24 +10,21 @@ namespace Arithmetic
     {
         static void Main(string[] args)
         {
-            char[] symbol_set = { '+'};
-            string[] symbol_print = { "+"};
+            char[] symbol_set = { '+','-','*','/','^'};
+            string[] symbol_print = { "+", "-", "*", "/", "^" };
             QuestionGenerator generator = new QuestionGenerator(
-                num_range_low: 2, num_range_high: 4,
-                use_fraction: 0.5, MaxNodeCeiling: 2,
+                num_range_low: -100, num_range_high: 100,
+                use_fraction: 0.5, MaxNodeCeiling: 10,
                 symbol_set: symbol_set, symbol_print: symbol_print);
-            generator.Generate(4);
+            generator.Generate(1000);
+
             Tuple<List<string>,List<string>> QA_pairs = generator.Get_QA_pairs();
-            foreach (string s in QA_pairs.Item1)
+            var len = QA_pairs.Item1.Count();
+            for (int i = 0; i < len; i++)
             {
-                Console.WriteLine(s);
-            }Console.WriteLine();
-            foreach (string s in QA_pairs.Item2)
-            {
-                Console.WriteLine(s);
+                Console.WriteLine($"{QA_pairs.Item1[i]} = {QA_pairs.Item2[i]}");
             }
             Console.Read();
-
             
         }   
     }
