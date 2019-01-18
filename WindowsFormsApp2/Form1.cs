@@ -20,7 +20,7 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
-            textBox3.Text = "1+1000000";//出的题目 jijijijijiijijjiiijji
+            //textBox3.Text = "1+1000000";//出的题目 
             textBox4.KeyDown += new KeyEventHandler(textBox4_KeyDown); 
         }
        
@@ -49,6 +49,16 @@ namespace WindowsFormsApp2
                 this.errorProvider1.SetError(this.textBox2, "输入不能为空");
                 return;
             }
+            else if(textBox11.Text=="")
+            {
+                this.errorProvider1.SetError(this.textBox11, "输入不能为空");
+                return;
+            }
+            else if(textBox12.Text=="")
+            {
+                this.errorProvider1.SetError(this.textBox12, "输入不能为空");
+                return;
+            }
             else
             {
             //将输入题目数转化成int型
@@ -59,6 +69,63 @@ namespace WindowsFormsApp2
                 {
                     this.errorProvider1.SetError(this.textBox2, "请输入1000以下的数字");
                 }
+                //出题：
+                String str="";
+                string[] symbol_print= { "" };
+                int i = 0;
+                if(checkBox1.Checked)
+                {
+                    str += "+";
+                    if(textBox6.Text!="")
+                    {
+                        symbol_print[i++] = textBox6.Text;
+                    }
+                }
+                if(checkBox2.Checked)
+                {
+                    str += "-";
+                    if (textBox7.Text != "")
+                    {
+                        symbol_print[i++] = textBox7.Text;
+                    }
+                }
+                if(checkBox3.Checked)
+                {
+                    str += "*";
+                    if (textBox8.Text != "")
+                    {
+                        symbol_print[i++] = textBox8.Text;
+                    }
+                }
+                if(checkBox4.Checked)
+                {
+                    str += "/";
+                    if (textBox9.Text != "")
+                    {
+                        symbol_print[i++] = textBox9.Text;
+                    }
+                }
+                if(checkBox5.Checked)
+                {
+                    str += "^";
+                    if (textBox10.Text != "")
+                    {
+                        symbol_print[i++] = textBox10.Text;
+                    }
+                }               
+                char[] arr = str.ToCharArray();
+                QuestionGenerator generator = new QuestionGenerator(
+                    num_range_low :int.Parse(textBox1.Text.Replace(" "," ")), 
+                    num_range_high:int.Parse(textBox5.Text.Trim()),
+                    use_fraction: int.Parse(textBox11.Text.Trim()),
+                    MaxNodeCeiling: int.Parse(textBox12.Text.Trim()),
+                    symbol_set: arr, symbol_print: symbol_print);
+                generator.Generate(int.Parse(textBox2.Text.Trim()));
+                var QA_pairs = generator.Get_QA_pairs();
+                List<string> Q = QA_pairs.Item1;
+                List<string> A = QA_pairs.Item2;
+                textBox3.Text = "1+1000000";//出的题目 
+
                 //做题：进度条
                 progressBar1.Maximum = a_c;//设置最大长度值
                 progressBar1.Value = 0;//设置当前值
@@ -76,16 +143,16 @@ namespace WindowsFormsApp2
                 currentCount = 21;//重新计时
                 progressBar1.Value += 1;//进度条加一
                 Count++;
-                if (textBox3.Text == Calucate(result).ToString())   //直接调用Calucate这个方法计算result的值并与输入的值进行比较
-                {
-                    right++;
+              //if (textBox3.Text == Calucate(result).ToString())   //直接调用Calucate这个方法计算result的值并与输入的值进行比较
+             // {
+               //   right++;
                    
                     //MessageBox.Show("回答正确！");
-                }
-                else
-                {
-                    Console.Beep();
-                }
+              //}
+               //else
+                //{
+                 //   Console.Beep();
+                //}
             }
         }
 
@@ -143,6 +210,12 @@ namespace WindowsFormsApp2
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form3 history = new Form3();
+            history.ShowDialog();
         }
 
         //    private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
