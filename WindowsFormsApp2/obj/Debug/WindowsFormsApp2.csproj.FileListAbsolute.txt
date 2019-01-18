@@ -17,3 +17,19 @@ C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsA
 C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
 C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
 C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\王佐正\Source\Repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\Users\王佐正\Source\Repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\Arithmetic.exe
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\Arithmetic.pdb
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\Arithmetic.exe.config
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csprojAssemblyReference.cache
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form1.resources
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form2.resources
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form3.resources
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+C:\Users\王佐正\source\repos\Crysflair\se-group-project-arithmetic\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CopyComplete

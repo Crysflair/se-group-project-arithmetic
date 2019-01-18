@@ -15,15 +15,16 @@ namespace WindowsFormsApp2
         public Form2()
         {
             InitializeComponent();
+
+            textBox1.Text = Form1.Cnt.ToString();
+            textBox2.Text = Form1.right.ToString();
+            textBox3.Text = (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-             textBox1.Text = Form1.Count.ToString();
-             textBox2.Text = Form1.right.ToString();
-             textBox3.Text = (Form1.right/Form1.Count).ToString();
-         }
- 
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 

@@ -46,6 +46,24 @@
             this.button3 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,28 +73,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -246,6 +246,162 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "出题要求↓↓↓↓↓↓";
             // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(188, 86);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(89, 19);
+            this.checkBox5.TabIndex = 36;
+            this.checkBox5.Text = "乘方运算";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.ForeColor = System.Drawing.Color.Red;
+            this.label20.Location = new System.Drawing.Point(307, 252);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(63, 14);
+            this.label20.TabIndex = 35;
+            this.label20.Text = "不超过10";
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(240, 248);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(45, 25);
+            this.textBox12.TabIndex = 34;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.Location = new System.Drawing.Point(27, 250);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(199, 15);
+            this.label19.TabIndex = 33;
+            this.label19.Text = "请输入最多使用的运算符：";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(307, 220);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(56, 14);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "≤1的数";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(240, 217);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(45, 25);
+            this.textBox11.TabIndex = 31;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label17.Location = new System.Drawing.Point(28, 220);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(199, 15);
+            this.label17.TabIndex = 30;
+            this.label17.Text = "请输入使用真分数的比例：";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(202, 177);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(45, 25);
+            this.textBox10.TabIndex = 29;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(130, 177);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(67, 15);
+            this.label16.TabIndex = 28;
+            this.label16.Text = "乘方号：";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(27, 177);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 15);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "除号：";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(130, 141);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(52, 15);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "减号：";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(237, 141);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(52, 15);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "乘号：";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(27, 141);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 15);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "加号：";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(79, 177);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(45, 25);
+            this.textBox9.TabIndex = 23;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(295, 138);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(45, 25);
+            this.textBox8.TabIndex = 22;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(186, 138);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(45, 25);
+            this.textBox7.TabIndex = 21;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(79, 138);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(45, 25);
+            this.textBox6.TabIndex = 20;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label11.Location = new System.Drawing.Point(28, 114);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 15);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "输入想显示的符号：";
+            // 
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
@@ -329,152 +485,6 @@
             this.progressBar1.Size = new System.Drawing.Size(347, 26);
             this.progressBar1.TabIndex = 20;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(28, 114);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 15);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "输入想显示的符号：";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(79, 138);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(45, 25);
-            this.textBox6.TabIndex = 20;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(186, 138);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(45, 25);
-            this.textBox7.TabIndex = 21;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(295, 138);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(45, 25);
-            this.textBox8.TabIndex = 22;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(79, 177);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(45, 25);
-            this.textBox9.TabIndex = 23;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(27, 141);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 15);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "加号：";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(237, 141);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(52, 15);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "乘号：";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(130, 141);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(52, 15);
-            this.label14.TabIndex = 26;
-            this.label14.Text = "减号：";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(27, 177);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(52, 15);
-            this.label15.TabIndex = 27;
-            this.label15.Text = "除号：";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(130, 177);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(67, 15);
-            this.label16.TabIndex = 28;
-            this.label16.Text = "乘方号：";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(202, 177);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(45, 25);
-            this.textBox10.TabIndex = 29;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(28, 220);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(199, 15);
-            this.label17.TabIndex = 30;
-            this.label17.Text = "请输入使用真分数的比例：";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(240, 217);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(45, 25);
-            this.textBox11.TabIndex = 31;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(307, 220);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(56, 14);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "≤1的数";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(27, 250);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(199, 15);
-            this.label19.TabIndex = 33;
-            this.label19.Text = "请输入最多使用的运算符：";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(240, 248);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(45, 25);
-            this.textBox12.TabIndex = 34;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(307, 252);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(63, 14);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "不超过10";
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -520,28 +530,18 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(412, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(385, 449);
+            this.groupBox2.Size = new System.Drawing.Size(386, 449);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "做题界面↓↓↓↓↓";
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(188, 86);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(89, 19);
-            this.checkBox5.TabIndex = 36;
-            this.checkBox5.Text = "乘方运算";
-            this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
