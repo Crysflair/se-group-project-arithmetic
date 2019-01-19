@@ -28,10 +28,10 @@ namespace WindowsFormsApp2
             string path = @"c:\temp\test\ascii.txt";
             for(int j=0;j<n;j++)
             { 
-                string str1 = System.DateTime.Now.ToString()+" Question:" + Form1.history.Item1[j].ToString() + " Your wrong answer:" + Form1.history.Item2[j].ToString() + "   ";
+                string str1 = System.DateTime.Now.ToString()+" 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString() + "   ";
                 FileStream fs = new FileStream(path, FileMode.Append);//文本加入不覆盖
 
-                StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);//转码
+                StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);//转码
 
                 sw.WriteLine(str1);
                 //清空缓冲区

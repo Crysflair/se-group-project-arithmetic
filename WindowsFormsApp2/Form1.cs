@@ -337,6 +337,7 @@ namespace WindowsFormsApp2
         {
             Form3 history = new Form3();
             history.ShowDialog();
+            timer1.Enabled = false;
         }
 
         private void label10_Click(object sender, EventArgs e)
