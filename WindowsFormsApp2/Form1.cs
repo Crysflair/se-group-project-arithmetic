@@ -17,6 +17,7 @@ namespace WindowsFormsApp2
         public static int right = 0;
         public static int wrong = 0;
         public static int Cnt = 0;
+        public static bool avoidrepeat = true;
 
         private static List<string> Q = new List<string>();
         private static List<string> A = new List<string>();
@@ -33,7 +34,7 @@ namespace WindowsFormsApp2
         {
             MessageBox.Show("要想获得帮助。请在相应输入框上按F1");
             helpProvider1.SetHelpString(textBox1, "输入运算数范围的下界");
-            helpProvider1.SetHelpString(textBox4, "回车进入下一题");
+            helpProvider1.SetHelpString(textBox4, "回车进入下一题，保证每做完一道题都要回车");
             helpProvider1.SetHelpString(textBox2, "输入的出题数不能超过1000");
             helpProvider1.SetHelpString(textBox5, "输入运算数范围的下界");
             helpProvider1.SetHelpString(textBox6, "输入自定义的加法符号");
@@ -55,6 +56,7 @@ namespace WindowsFormsApp2
            if (currentCount == 0)
             {
                 timer1.Enabled = false;
+                avoidrepeat = false;
                 MessageBox.Show("时间用尽！");
                
                 Console.Beep();
@@ -68,6 +70,7 @@ namespace WindowsFormsApp2
                     textBox3.Text = Q[Cnt];//出的题目 
                     currentCount = 21;//重新计时 
                     timer1.Enabled = true;
+                    avoidrepeat = true;
                 }
                 progressBar1.Value += 1;//进度条加一  
                 if (progressBar1.Value == int.Parse(textBox2.Text))
@@ -229,7 +232,7 @@ namespace WindowsFormsApp2
                         timer1.Interval = 1000;//设置时间间隔为1秒（1000毫秒），覆盖构造函数设置的间隔
                         currentCount = 21;
                         timer1.Enabled = true;
-
+                        avoidrepeat = true;
                     }
 
                 }
@@ -323,9 +326,18 @@ namespace WindowsFormsApp2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 score = new Form2();
-            score.ShowDialog();
-            timer1.Enabled = false;
+            if(Cnt==int.Parse(textBox2.Text))
+            {
+                timer1.Enabled = false;
+                Form2 score = new Form2();
+                score.ShowDialog();
+               
+                avoidrepeat = false;
+            }
+            else
+            {
+                MessageBox.Show("禁止提前交卷！");
+            }
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
@@ -335,9 +347,18 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form3 history = new Form3();
-            history.ShowDialog();
-            timer1.Enabled = false;
+            if (Cnt == int.Parse(textBox2.Text))
+            {
+                timer1.Enabled = false;
+                Form3 history = new Form3();
+                history.ShowDialog();
+               
+                avoidrepeat = false;
+            }
+            else
+            {
+                MessageBox.Show("专心做题！做完题才能看！");
+            }
         }
 
         private void label10_Click(object sender, EventArgs e)

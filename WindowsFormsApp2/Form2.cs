@@ -12,12 +12,14 @@ namespace WindowsFormsApp2
 {
     public partial class Form2 : Form
     {
+       // public static string right_lv;
         public Form2()
         {
             InitializeComponent();
 
             textBox1.Text = Form1.Cnt.ToString();
             textBox2.Text = Form1.right.ToString();
+          //  right_lv = (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
             textBox3.Text = (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
         }
 
