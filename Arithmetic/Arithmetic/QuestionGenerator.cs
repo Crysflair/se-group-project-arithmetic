@@ -81,13 +81,10 @@ namespace Arithmetic
                     expression = generator.Generate(MaxNodeCeiling);
                     expression_in_symbol = Tree_to_Symbol_string(expression);
 
-                    // check if duplicated
-                    if (Expression_in_symbol.Contains(expression_in_symbol))
-                        continue;
+                    // check if need to be add
+                    if (! Expression_in_symbol.Contains(expression_in_symbol))
+                        Expression_in_symbol.Add(expression_in_symbol);
                 }
-
-                // if not duplicate, save this expression
-                Expression_in_symbol.Add(expression_in_symbol);
 
                 // 在当前符号表达式基础上生成多个数字表达式
                 // then start generation !
