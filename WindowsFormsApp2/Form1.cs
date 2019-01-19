@@ -212,17 +212,22 @@ namespace WindowsFormsApp2
                             symbol_set: arr, symbol_print: symbol_print);
                         generator.Generate(int.Parse(textBox2.Text.Trim()));
 
+                        Cnt = 0;
                         var QA_pairs = generator.Get_QA_pairs();
                         Q = QA_pairs.Item1;
                         A = QA_pairs.Item2;
                         textBox3.Text = Q[Cnt];//出的题目 
 
+                        //初始化
+                        right = 0;
+                        wrong = 0;
                         //做题：进度条
                         progressBar1.Maximum = a_c;//设置最大长度值
                         progressBar1.Value = 0;//设置当前值
                         progressBar1.Step = 1;
                         //做题：开始计时
                         timer1.Interval = 1000;//设置时间间隔为1秒（1000毫秒），覆盖构造函数设置的间隔
+                        currentCount = 21;
                         timer1.Enabled = true;
 
                     }

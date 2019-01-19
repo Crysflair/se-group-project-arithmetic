@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsFormsApp2
 {
@@ -24,7 +25,23 @@ namespace WindowsFormsApp2
                 richTextBox1.Text += Form1.history.Item2[i].ToString();
                 richTextBox1.Text += "           ";
             }
-            
+            string path = @"c:\temp\test\ascii.txt";
+            for(int j=0;j<n;j++)
+            { 
+                string str1 = System.DateTime.Now.ToString()+" Question:" + Form1.history.Item1[j].ToString() + " Your wrong answer:" + Form1.history.Item2[j].ToString() + "   ";
+                FileStream fs = new FileStream(path, FileMode.Append);//文本加入不覆盖
+
+                StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);//转码
+
+                sw.WriteLine(str1);
+                //清空缓冲区
+                sw.Flush();
+                //关闭流
+                sw.Close();
+                fs.Close();
+            }
+            string str = File.ReadAllText(@"c:\temp\test\ascii.txt");
+            richTextBox2.Text = str;
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -42,6 +59,11 @@ namespace WindowsFormsApp2
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(@"c:\temp\test\ascii.txt", "");
         }
     }
 }
