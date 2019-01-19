@@ -47,10 +47,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -75,8 +73,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label21 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -211,10 +209,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.checkBox5);
-            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.textBox12);
             this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.textBox11);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.textBox10);
@@ -256,17 +252,6 @@
             this.checkBox5.Text = "乘方运算";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(307, 252);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(63, 14);
-            this.label20.TabIndex = 35;
-            this.label20.Text = "不超过10";
-            // 
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(240, 248);
@@ -280,20 +265,9 @@
             this.label19.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label19.Location = new System.Drawing.Point(27, 250);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(199, 15);
+            this.label19.Size = new System.Drawing.Size(192, 15);
             this.label19.TabIndex = 33;
-            this.label19.Text = "请输入最多使用的运算符：";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(307, 220);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(56, 14);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "≤1的数";
+            this.label19.Text = "请输入运算符最大个数 ：";
             // 
             // textBox11
             // 
@@ -505,20 +479,8 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(207, 344);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(157, 15);
-            this.label22.TabIndex = 38;
-            this.label22.Text = "题目全部做完点击回车";
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.progressBar1);
@@ -595,16 +557,14 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 
