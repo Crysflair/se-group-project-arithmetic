@@ -158,6 +158,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(17, 175);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(237, 25);
             this.textBox3.TabIndex = 11;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -401,7 +402,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(266, 284);
+            this.label9.Location = new System.Drawing.Point(258, 284);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(19, 19);
             this.label9.TabIndex = 12;
@@ -409,16 +410,16 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(319, 278);
+            this.textBox5.Location = new System.Drawing.Point(295, 278);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(44, 25);
+            this.textBox5.Size = new System.Drawing.Size(56, 25);
             this.textBox5.TabIndex = 11;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(188, 278);
+            this.textBox1.Location = new System.Drawing.Point(186, 278);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(44, 25);
+            this.textBox1.Size = new System.Drawing.Size(59, 25);
             this.textBox1.TabIndex = 10;
             // 
             // label8
@@ -507,8 +508,10 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "算数练习系统";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);

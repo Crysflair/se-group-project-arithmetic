@@ -72,8 +72,17 @@ namespace Arithmetic
             Expression expression = null;     // 当前表达式
             string expression_in_symbol = null;      // 当前表达式符号字符串
 
+            DateTime beforDT = DateTime.Now;
+
             while (generate_cnt > 0)
             {
+                
+                TimeSpan ts = DateTime.Now.Subtract(beforDT);
+                if(ts.TotalMilliseconds > Math.Max(generate_cnt * 10, 1000))
+                {
+                    throw new TimeoutException();
+                }
+
                 if (need_new_expression)      // 生成新的表达式符号
                 {
                     // generate a new expression
