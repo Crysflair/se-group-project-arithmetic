@@ -31,6 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label2 = new System.Windows.Forms.Label();
@@ -75,9 +76,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -183,9 +186,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(226, 375);
+            this.button2.Location = new System.Drawing.Point(226, 364);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 40);
+            this.button2.Size = new System.Drawing.Size(138, 47);
             this.button2.TabIndex = 15;
             this.button2.Text = "提交";
             this.button2.UseVisualStyleBackColor = true;
@@ -193,7 +196,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(54, 377);
+            this.button3.Location = new System.Drawing.Point(54, 367);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(177, 47);
             this.button3.TabIndex = 16;
@@ -472,9 +475,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 270);
+            this.button1.Location = new System.Drawing.Point(17, 362);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 62);
+            this.button1.Size = new System.Drawing.Size(150, 47);
             this.button1.TabIndex = 37;
             this.button1.Text = "历史记录";
             this.button1.UseVisualStyleBackColor = true;
@@ -482,6 +485,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pictureBox1);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.progressBar1);
@@ -497,6 +501,15 @@
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "做题界面↓↓↓↓↓";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(22, 232);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(342, 113);
+            this.pictureBox1.TabIndex = 38;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -518,6 +531,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,6 +582,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

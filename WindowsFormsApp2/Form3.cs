@@ -29,22 +29,30 @@ namespace WindowsFormsApp2
                     richTextBox1.Text += Form1.history.Item1[i].ToString();
                     richTextBox1.Text += " 错误答案：";
                     richTextBox1.Text += Form1.history.Item2[i].ToString();
-                    richTextBox1.Text += "           ";
+                richTextBox1.Text += "正确答案：";
+                richTextBox1.Text += Form1.a[i];
+
+                    richTextBox1.Text += "\n";
                 }
+            richTextBox1.Text += "共做";
+            richTextBox1.Text += Form1.Cnt.ToString();
+            richTextBox1.Text += "做错";
+            richTextBox1.Text += Form1.wrong.ToString();
+
                 richTextBox1.Text += " 正确率：";
                 richTextBox1.Text += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
-                richTextBox1.Text += "           ";
-                string path = history_path;
+                richTextBox1.Text += " \n ";
+               /* string path = history_path;
                 if (Form1.bug == 1)
                 {                
                    for (int j = Form1.history.Item1.Count - 1; j > Form1.history.Item1.Count - n - 1; j--)
                     {
-                        string str1 = System.DateTime.Now.ToString() + " 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString() + "   ";
+                        string str1 = System.DateTime.Now.ToString() + " 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString() ;
                         if (j == Form1.history.Item1.Count - n)
                         {
                             str1 += "正确率：";
                             str1 += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
-                            str1 += "         ";
+                            str1 += "\n";
                         }
 
                         FileStream fs = new FileStream(path, FileMode.Append);//文本加入不覆盖
@@ -58,7 +66,7 @@ namespace WindowsFormsApp2
                         fs.Close();
                     }
                 
-                }   
+                }  */ 
             string str = File.ReadAllText(history_path);
             richTextBox2.Text = str;
         }
@@ -82,6 +90,7 @@ namespace WindowsFormsApp2
 
         private void button2_Click(object sender, EventArgs e)
         {
+            richTextBox2.Text = "";
             File.WriteAllText(history_path,"");
         }
     }

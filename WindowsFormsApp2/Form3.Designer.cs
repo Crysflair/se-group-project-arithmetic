@@ -42,6 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.Location = new System.Drawing.Point(46, 32);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(695, 163);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
@@ -83,6 +84,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox2.Location = new System.Drawing.Point(46, 250);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(695, 163);
             this.richTextBox2.TabIndex = 4;
             this.richTextBox2.Text = "";

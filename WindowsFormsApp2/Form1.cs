@@ -21,7 +21,9 @@ namespace WindowsFormsApp2
         private static readonly string history_path = "./ascii_history.txt";
         public int Flag = 0;
         public static bool chutienabled = true;
+        public static bool historyenabled = true;
         public static int bug = 0;
+        public static string[] a=new string[1000];
 
         private static List<string> Q = new List<string>();
         private static List<string> A = new List<string>();
@@ -65,13 +67,14 @@ namespace WindowsFormsApp2
                
                 Console.Beep();
                 //历史记录中....
-                
+                a[history.Item1.Count] = A[Cnt];
                 history.Item1.Add(Q[Cnt]);
                 history.Item2.Add(textBox4.Text);
                
 
                 wrong++;
-                Cnt++;
+               
+                    Cnt++;
                 textBox4.Text = "";  //MYSRIO
                 if (Cnt != int.Parse(textBox2.Text))
                 {
@@ -252,7 +255,7 @@ namespace WindowsFormsApp2
                                         MessageBox.Show("生成题目超时！该设置下无法生成足够数量的题目组合，请更改输入重试");
                                         return;
                                     }
-
+                                   
                                     Cnt = 0;
                                     var QA_pairs = generator.Get_QA_pairs();
                                     Q = QA_pairs.Item1;
@@ -272,6 +275,7 @@ namespace WindowsFormsApp2
                                     timer1.Enabled = true;
                                     //    avoidrepeat = true;
                                     chutienabled = false;
+                                    historyenabled = false;
                                 }
 
                             }
@@ -291,44 +295,53 @@ namespace WindowsFormsApp2
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)//做题：输入答案框
         {
-            if (e.KeyCode == Keys.Enter && textBox4.Text != "")//做题：每当按下回车时 // MYSRIO: 我觉得你想说text4(原来写的text3)
+            if (timer1.Enabled)
             {
-                if (Standardizer.Standardize_Number(textBox4.Text) == A[Cnt])   //直接与输入的值进行比较
+                if (e.KeyCode == Keys.Enter && textBox4.Text != "")//做题：每当按下回车时 // MYSRIO: 我觉得你想说text4(原来写的text3)
                 {
-                    right++;
-                }
-                else
-                {
+                    if (Standardizer.Standardize_Number(textBox4.Text) == A[Cnt])   //直接与输入的值进行比较
+                    {
+                        right++;
+                    }
+                    else
+                    {
 
-                    Console.Beep();
-                    //历史记录中....
-                
-                    history.Item1.Add(Q[Cnt]);
-                    history.Item2.Add(textBox4.Text);
-                 
+                        Console.Beep();
+                        //历史记录中....
+                        a[history.Item1.Count] = A[Cnt];
+                        history.Item1.Add(Q[Cnt]);
+                        history.Item2.Add(textBox4.Text);
 
-                    wrong++;
+
+                        wrong++;
+                    }
+                    
+                        Cnt++;
+                    if (Cnt != int.Parse(textBox2.Text))
+                    {
+                        textBox3.Text = Q[Cnt];//出的题目 
+                        currentCount = 21;//重新计时 
+                    }
+                    progressBar1.Value += 1;//进度条加一  
+                    textBox4.Text = ""; //MYSRIO: 清空文本框
+                    if (progressBar1.Value == int.Parse(textBox2.Text))
+                    {
+                        MessageBox.Show("恭喜完成所有题目!请点击提交按钮查看成绩结算！");  // MYSRIO
+                        textBox3.Text = "";//每次答完题后清空
+                        timer1.Enabled = false;
+                        chutienabled = true;
+                        
+                    }
+
                 }
-                Cnt++;
-                if (Cnt != int.Parse(textBox2.Text))
+                else if (e.KeyCode == Keys.Enter && textBox4.Text == "") // MYSRIO: 我觉得你想说text4(原来写的text3)
                 {
-                    textBox3.Text = Q[Cnt];//出的题目 
-                    currentCount = 21;//重新计时 
+                    MessageBox.Show("请输入答案！");
                 }
-                progressBar1.Value += 1;//进度条加一  
-                textBox4.Text = ""; //MYSRIO: 清空文本框
-                if (progressBar1.Value == int.Parse(textBox2.Text))
-                {
-                    MessageBox.Show("恭喜完成所有题目!请点击提交按钮查看成绩结算！");  // MYSRIO
-                    textBox3.Text = "";//每次答完题后清空
-                    timer1.Enabled = false;
-                    chutienabled = true;
-                }
-                
             }
-            else if (e.KeyCode == Keys.Enter && textBox4.Text == "") // MYSRIO: 我觉得你想说text4(原来写的text3)
+            else
             {
-                MessageBox.Show("请输入答案！");
+                MessageBox.Show("此时不要调戏输入答案的文本框！");
             }
         }
 
@@ -377,17 +390,27 @@ namespace WindowsFormsApp2
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)//提交按钮
         {
-            if(Flag==1)
+            string subPath = history_path;
+            if (false == System.IO.File.Exists(subPath))
+            {
+                //创建pic文件夹
+                //  System.IO.Directory.CreateDirectory(subPath);
+                FileStream fs1 = new FileStream(history_path, FileMode.Create, FileAccess.ReadWrite);
+                fs1.Close();
+            }// MYSRIO: 竟然直接引用另一个类的成员 高耦合差评 不能直接把需要的参数传给构造函数吗
+
+            bug++;
+            if (Flag==1)
             {
                 if(Cnt==int.Parse(textBox2.Text))
                 {
                     timer1.Enabled = false;
                     Form2 score = new Form2();
                     score.ShowDialog();
-               
-               // avoidrepeat = false;
+
+                    historyenabled = true;
                 }
                 else
                 {
@@ -405,38 +428,44 @@ namespace WindowsFormsApp2
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//历史记录按钮
         {
-            string subPath = history_path;
-            if (false == System.IO.File.Exists(subPath))
-            {
-                //创建pic文件夹
-                //  System.IO.Directory.CreateDirectory(subPath);
-                FileStream fs1 = new FileStream(history_path, FileMode.Create, FileAccess.ReadWrite);
-                fs1.Close();
-            }// MYSRIO: 竟然直接引用另一个类的成员 高耦合差评 不能直接把需要的参数传给构造函数吗
-
-            bug++;
-
-            if (Flag==1)
-            {
-                 if (Cnt == int.Parse(textBox2.Text)) //提交按钮
+            /*    string subPath = history_path;
+                if (false == System.IO.File.Exists(subPath))
                 {
-                    timer1.Enabled = false;
-                    Form3 history = new Form3();
-                    history.ShowDialog();
-                   // avoidrepeat = false;
+                    //创建pic文件夹
+                    //  System.IO.Directory.CreateDirectory(subPath);
+                    FileStream fs1 = new FileStream(history_path, FileMode.Create, FileAccess.ReadWrite);
+                    fs1.Close();
+                }// MYSRIO: 竟然直接引用另一个类的成员 高耦合差评 不能直接把需要的参数传给构造函数吗
+
+                bug++;
+    */
+            if (historyenabled)
+            {
+                if (Flag == 1)
+                {
+                    if (Cnt == int.Parse(textBox2.Text)) //提交按钮
+                    {
+                        timer1.Enabled = false;
+                        Form3 history = new Form3();
+                        history.ShowDialog();
+                        // avoidrepeat = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("专心做题！做完题才能看！");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("专心做题！做完题才能看！");
+                    Form3 history = new Form3();
+                    history.ShowDialog();
                 }
             }
             else
             {
-                //MessageBox.Show("专心做题！做完题才能看！");
-                Form3 history = new Form3();
-                history.ShowDialog();
+                MessageBox.Show("试卷还没有提交！");
             }
         }
 
@@ -444,14 +473,5 @@ namespace WindowsFormsApp2
         {
 
         }
-
-        //    private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        //   {
-        ////       private void button1_Click(object sender, EventArgs e)
-        //   {
-
-        //   }
-
-        //  }
     }
 }
