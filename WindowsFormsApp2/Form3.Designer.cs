@@ -110,7 +110,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "Form3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form3";
+            this.Text = "历史记录";
             this.ResumeLayout(false);
             this.PerformLayout();
 
