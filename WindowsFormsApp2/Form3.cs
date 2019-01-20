@@ -36,8 +36,9 @@ namespace WindowsFormsApp2
                 }
             richTextBox1.Text += "共做";
             richTextBox1.Text += Form1.Cnt.ToString();
-            richTextBox1.Text += "做错";
+            richTextBox1.Text += "题做错";
             richTextBox1.Text += Form1.wrong.ToString();
+            richTextBox1.Text += "题";
 
                 richTextBox1.Text += " 正确率：";
                 richTextBox1.Text += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
@@ -83,10 +84,10 @@ namespace WindowsFormsApp2
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            richTextBox1.Clear();
-        }
+       // private void button1_Click(object sender, EventArgs e)
+        //{
+          //  richTextBox1.Clear();
+        //}
 
         private void button2_Click(object sender, EventArgs e)
         {

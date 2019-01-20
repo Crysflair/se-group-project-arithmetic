@@ -31,9 +31,10 @@ namespace WindowsFormsApp2
             {
                 for (int j = Form1.history.Item1.Count - 1; j > Form1.history.Item1.Count - n - 1; j--)
                 {
-                    string str1 = System.DateTime.Now.ToString() + " 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString()+"正确答案" + Form1.a[j]+"\n"+"共做：" + Form1.Cnt.ToString()+"做错："+ Form1.wrong.ToString();
+                    string str1 = System.DateTime.Now.ToString() + " 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString()+"正确答案" + Form1.a[j]+"\n";
                     if (j == Form1.history.Item1.Count - n)
                     {
+                        str1 += "共做：" + Form1.Cnt.ToString() + "题做错：" + Form1.wrong.ToString() + "题";
                         str1 += "正确率：";
                         str1 += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
                         str1 += "\n";

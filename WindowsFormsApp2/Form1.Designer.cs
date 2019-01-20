@@ -292,7 +292,7 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(202, 177);
+            this.textBox10.Location = new System.Drawing.Point(204, 176);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(45, 25);
             this.textBox10.TabIndex = 29;
@@ -300,7 +300,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(130, 177);
+            this.label16.Location = new System.Drawing.Point(132, 177);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(67, 15);
             this.label16.TabIndex = 28;
@@ -318,7 +318,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(130, 141);
+            this.label14.Location = new System.Drawing.Point(132, 141);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 15);
             this.label14.TabIndex = 26;
@@ -344,7 +344,7 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(79, 177);
+            this.textBox9.Location = new System.Drawing.Point(82, 177);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(45, 25);
             this.textBox9.TabIndex = 23;
@@ -358,14 +358,14 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(186, 138);
+            this.textBox7.Location = new System.Drawing.Point(188, 138);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(45, 25);
             this.textBox7.TabIndex = 21;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(79, 138);
+            this.textBox6.Location = new System.Drawing.Point(82, 138);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(45, 25);
             this.textBox6.TabIndex = 20;
