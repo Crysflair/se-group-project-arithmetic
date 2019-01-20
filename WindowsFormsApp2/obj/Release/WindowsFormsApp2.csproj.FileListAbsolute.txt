@@ -1,0 +1,16 @@
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe.config
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\WindowsFormsApp2.pdb
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\Arithmetic.exe
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\Arithmetic.pdb
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\bin\Release\Arithmetic.exe.config
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.csprojAssemblyReference.cache
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Form1.resources
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Form2.resources
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Form3.resources
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.CopyComplete
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe
+C:\Users\MysriO\Documents\Github Files\se-group-project-arithmetic\WindowsFormsApp2\obj\Release\WindowsFormsApp2.pdb
