@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Arithmetic\\Arithmetic",
     "\\WindowsFormsApp2",
-    "\\WindowsFormsApp2\\bin"
+    "\\WindowsFormsApp2\\bin",
+    "\\WindowsFormsApp2\\bin\\Release"
   ],
-  "SelectedNode": "\\Arithmetic",
+  "SelectedNode": "\\WindowsFormsApp2\\bin\\Release",
   "PreviewInSolutionExplorer": false
 }

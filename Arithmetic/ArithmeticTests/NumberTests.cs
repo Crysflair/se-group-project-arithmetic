@@ -58,8 +58,7 @@ namespace Arithmetic.Tests
 
         [TestMethod()]
         public void PowTest()
-        {
-            // TODO: test invalid input
+        {   
             Assert.AreEqual(new Number(0, 1), new Number(0, 1).Pow(new Number(3, 1)));
             Assert.AreEqual(new Number(1, 1), new Number(0, 1).Pow(new Number(0, 3)));
             Assert.AreEqual(new Number(1, 1), new Number(24, 1).Pow(new Number(0, 1)));
