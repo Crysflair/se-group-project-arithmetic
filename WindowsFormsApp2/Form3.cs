@@ -20,47 +20,45 @@ namespace WindowsFormsApp2
 
             InitializeComponent();
             int n=Form1.wrong;
-            
+
             // MYSRIO: 竟然直接引用另一个类的成员 高耦合差评 不能直接把需要的参数传给构造函数吗
-
-            for (int i= Form1.history.Item1.Count - 1; i > Form1.history.Item1.Count - 1-n;i--)
-            {
-                richTextBox1.Text += "题目：";
-                richTextBox1.Text += Form1.history.Item1[i].ToString();
-                richTextBox1.Text += " 错误答案：";
-                richTextBox1.Text += Form1.history.Item2[i].ToString();
-                richTextBox1.Text += "           ";
-            }
-            richTextBox1.Text += " 正确率：";
-            richTextBox1.Text += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
-            richTextBox1.Text += "           ";
-            string path = history_path;
-
-            if(Form1.avoidrepeat==true)
-            {
-               for(int j= Form1.history.Item1.Count-1; j > Form1.history.Item1.Count-n-1; j--)
-                  //  for(int j=0;j>n;j++)
-                {    
-                    string str1 = System.DateTime.Now.ToString()+" 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString() + "   ";
-                    if(j== Form1.history.Item1.Count - n )
-                    {
-                        str1 += "正确率：";
-                        str1+= (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
-                        str1 += "         ";
-                    }
-                        
-                    FileStream fs = new FileStream(path, FileMode.Append);//文本加入不覆盖
-                    StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);//转码
-
-                    sw.WriteLine(str1);
-                    //清空缓冲区
-                    sw.Flush();
-                    //关闭流
-                    sw.Close();
-                    fs.Close();
-                }
-            }
            
+                for (int i = Form1.history.Item1.Count - 1; i > Form1.history.Item1.Count - 1 - n; i--)
+                {
+                    richTextBox1.Text += "题目：";
+                    richTextBox1.Text += Form1.history.Item1[i].ToString();
+                    richTextBox1.Text += " 错误答案：";
+                    richTextBox1.Text += Form1.history.Item2[i].ToString();
+                    richTextBox1.Text += "           ";
+                }
+                richTextBox1.Text += " 正确率：";
+                richTextBox1.Text += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
+                richTextBox1.Text += "           ";
+                string path = history_path;
+                if (Form1.bug == 1)
+                {                
+                   for (int j = Form1.history.Item1.Count - 1; j > Form1.history.Item1.Count - n - 1; j--)
+                    {
+                        string str1 = System.DateTime.Now.ToString() + " 题目:" + Form1.history.Item1[j].ToString() + " 错误答案:" + Form1.history.Item2[j].ToString() + "   ";
+                        if (j == Form1.history.Item1.Count - n)
+                        {
+                            str1 += "正确率：";
+                            str1 += (Convert.ToDouble(Form1.right) / Form1.Cnt).ToString();
+                            str1 += "         ";
+                        }
+
+                        FileStream fs = new FileStream(path, FileMode.Append);//文本加入不覆盖
+                        StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);//转码
+
+                        sw.WriteLine(str1);
+                        //清空缓冲区
+                        sw.Flush();
+                        //关闭流
+                        sw.Close();
+                        fs.Close();
+                    }
+                
+                }   
             string str = File.ReadAllText(history_path);
             richTextBox2.Text = str;
         }
