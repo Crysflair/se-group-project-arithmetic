@@ -267,6 +267,7 @@ namespace WindowsFormsApp2
                 {
                     MessageBox.Show("请点击提交！");
                 }
+                textBox3.Text = "";//每次答完题后清空
             }
             else if (e.KeyCode == Keys.Enter && textBox3.Text == "")
             {
