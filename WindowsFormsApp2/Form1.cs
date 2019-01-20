@@ -32,18 +32,18 @@ namespace WindowsFormsApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("要想获得帮助。请在相应输入框上按F1");
-            helpProvider1.SetHelpString(textBox1, "输入运算数范围的下界");
+            MessageBox.Show("欢迎使用本算术练习系统！\n如果初次使用本系统请在相应输入框上按F1来了解使用方法，谢谢！");
+            helpProvider1.SetHelpString(textBox1, "输入运算数范围的下界，比如练习0~20加减法时填写0");
             helpProvider1.SetHelpString(textBox4, "回车进入下一题，保证每做完一道题都要回车");
             helpProvider1.SetHelpString(textBox2, "输入的出题数不能超过1000");
-            helpProvider1.SetHelpString(textBox5, "输入运算数范围的下界");
-            helpProvider1.SetHelpString(textBox6, "输入自定义的加法符号");
-            helpProvider1.SetHelpString(textBox7, "输入自定义的减法符号");
-            helpProvider1.SetHelpString(textBox8, "输入自定义的乘法符号");
-            helpProvider1.SetHelpString(textBox9, "输入自定义的除法符号");
-            helpProvider1.SetHelpString(textBox10, "输入自定义的乘方符号");
+            helpProvider1.SetHelpString(textBox5, "输入运算数范围的上界，比如练习0~20加减法时填写20");  // MYSRIO: 你这里原先写的是下界，估计复制粘贴忘了改，可以理解 ^_^
+            helpProvider1.SetHelpString(textBox6, "输入自定义的加法符号，比如 +，ADD");
+            helpProvider1.SetHelpString(textBox7, "输入自定义的减法符号，比如 -，SUB");
+            helpProvider1.SetHelpString(textBox8, "输入自定义的乘法符号，比如 *，×");
+            helpProvider1.SetHelpString(textBox9, "输入自定义的除法符号，比如 /，÷");
+            helpProvider1.SetHelpString(textBox10, "输入自定义的乘方符号，比如 ^，**");
             helpProvider1.SetHelpString(textBox11, "请确保输入的是0-1之间的数，包括0和1");
-            helpProvider1.SetHelpString(textBox11, "请确保输入的数不超过");
+            helpProvider1.SetHelpString(textBox12, "请确保输入的运算符个数不超过10，否则题目将很难在20秒内做完。"); // MYSRIO: 你这里原先写的是textBox11.
             
 
         }
@@ -65,6 +65,7 @@ namespace WindowsFormsApp2
                 history.Item2.Add(textBox4.Text);
                 wrong++;
                 Cnt++;
+                textBox4.Text = "";  //MYSRIO
                 if (Cnt != int.Parse(textBox2.Text))
                 {
                     textBox3.Text = Q[Cnt];//出的题目 
@@ -107,144 +108,174 @@ namespace WindowsFormsApp2
             {
                 //将输入题目数转化成int型
                  string a = textBox2.Text;
-                 int a_c = int.Parse(a);
+                //MYSRIO: 没有异常处理直接Parse差评
+                int a_c;
+                try
+                {
+                    a_c = int.Parse(a);
+                }
+                catch(Exception)
+                {
+                    this.errorProvider1.SetError(this.textBox2, "非法输入.请输入100000以下的数字");
+                    return;
+                }
                 //报错处理：题目数超过范围
                 if (a_c > 1000)
                 {
-                    this.errorProvider1.SetError(this.textBox2, "请输入1000以下的数字");
+                    this.errorProvider1.SetError(this.textBox2, "最大生成100000道题.请输入100000以下的数字");  //MYSRIO
                 }
-                else if (int.Parse(textBox1.Text) > int.Parse(textBox5.Text.Trim()) ||
-                double.Parse(textBox11.Text.Trim()) > 1 || double.Parse(textBox11.Text.Trim()) < 0 ||
-                int.Parse(textBox12.Text.Trim()) > 10)
-                {
-                     MessageBox.Show("请保证输入满足要求！");
-                     if(int.Parse(textBox1.Text) > int.Parse(textBox5.Text.Trim()))
-                        this.errorProvider1.SetError(this.textBox5, "请保证输入范围左边小于右边");
-                     if(double.Parse(textBox11.Text.Trim()) > 1 || double.Parse(textBox11.Text.Trim()) < 0)
-                        this.errorProvider1.SetError(this.textBox11, "请保证输入小于或等于1大于等于0");
-                     if(int.Parse(textBox12.Text.Trim()) > 10)
-                        this.errorProvider1.SetError(this.textBox11, "请保证输入小于10");
-                }
+                // MSYSRIO: 不进行异常处理差评
                 else
                 {
-                    //出题：
-                    string str = "";
-
-                    List<string> list_print = new List<string>();
-
-                    if (checkBox1.Checked)
+                    try
                     {
-                        str += "+";
-                        if (textBox6.Text != "")
+                        if (int.Parse(textBox1.Text) > int.Parse(textBox5.Text.Trim()) ||
+                      double.Parse(textBox11.Text.Trim()) > 1 || double.Parse(textBox11.Text.Trim()) < 0 ||
+                      int.Parse(textBox12.Text.Trim()) > 10)
                         {
-                            list_print.Add(textBox6.Text);
+                            MessageBox.Show("请保证输入满足要求！");
+                            if (int.Parse(textBox1.Text) > int.Parse(textBox5.Text.Trim()))
+                                this.errorProvider1.SetError(this.textBox5, "请保证输入范围左边小于右边");
+                            if (double.Parse(textBox11.Text.Trim()) > 1 || double.Parse(textBox11.Text.Trim()) < 0)
+                                this.errorProvider1.SetError(this.textBox11, "请保证输入小于或等于1大于等于0");
+                            if (int.Parse(textBox12.Text.Trim()) > 10)
+                                this.errorProvider1.SetError(this.textBox11, "请保证输入小于10");
                         }
                         else
                         {
-                            MessageBox.Show("请保证输入对应加法符号！eg. +");
-                            this.errorProvider1.SetError(this.textBox6, "请保证输入对应加法符号！eg. +");
-                        }
-                    }
-                    if (checkBox2.Checked)
-                    {
-                        str += "-";
-                        if (textBox7.Text != "")
-                        {
-                            list_print.Add(textBox7.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("请保证输入对应减法符号！eg. -");
-                            this.errorProvider1.SetError(this.textBox7, "请保证输入对应减法符号！eg. -");
-                        }
-                    }
-                    if (checkBox3.Checked)
-                    {
-                        str += "*";
-                        if (textBox8.Text != "")
-                        {
-                            list_print.Add(textBox8.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("请保证输入对应乘法符号！eg. *");
-                            this.errorProvider1.SetError(this.textBox8, "请保证输入对应乘法符号！eg. *");
-                        }
-                    }
-                    if (checkBox4.Checked)
-                    {
-                        str += "/";
-                        if (textBox9.Text != "")
-                        {
-                            list_print.Add(textBox9.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("请保证输入对应除法符号！eg. /");
-                            this.errorProvider1.SetError(this.textBox9, "请保证输入对应除法符号！eg. /");
-                        }
-                    }
-                    if (checkBox5.Checked)
-                    {
-                        str += "^";
-                        if (textBox10.Text != "")
-                        {
-                            list_print.Add(textBox10.Text);
-                        }
-                        else
-                        {
-                            MessageBox.Show("请保证输入对应乘方符号！eg. ^");
-                            this.errorProvider1.SetError(this.textBox10, "请保证输入对应乘方符号！eg. ^");
-                        }
-                    }
-                    char[] arr = str.ToCharArray();
-                    string[] symbol_print = list_print.ToArray();
-                    if (symbol_print.Length != arr.Length)
-                    {
-                        MessageBox.Show("请保证运算范围和显示符号的对应！");
-                        this.errorProvider1.SetError(this.label3, "请保证运算范围和显示符号的对应！");
-                        this.errorProvider1.SetError(this.label11, "请保证运算范围和显示符号的对应！");
-                    }
-                    else
-                    {
-                        QuestionGenerator generator = new QuestionGenerator(
-                            num_range_low: int.Parse(textBox1.Text),
-                            num_range_high: int.Parse(textBox5.Text.Trim()),
-                            use_fraction: double.Parse(textBox11.Text.Trim()),
-                            MaxNodeCeiling: int.Parse(textBox12.Text.Trim()),
-                            symbol_set: arr, symbol_print: symbol_print);
-                        generator.Generate(int.Parse(textBox2.Text.Trim()));
+                            //出题：
+                            string str = "";
 
-                        Cnt = 0;
-                        var QA_pairs = generator.Get_QA_pairs();
-                        Q = QA_pairs.Item1;
-                        A = QA_pairs.Item2;
-                        textBox3.Text = Q[Cnt];//出的题目 
+                            List<string> list_print = new List<string>();
 
-                        //初始化
-                        right = 0;
-                        wrong = 0;
-                        //做题：进度条
-                        progressBar1.Maximum = a_c;//设置最大长度值
-                        progressBar1.Value = 0;//设置当前值
-                        progressBar1.Step = 1;
-                        //做题：开始计时
-                        timer1.Interval = 1000;//设置时间间隔为1秒（1000毫秒），覆盖构造函数设置的间隔
-                        currentCount = 21;
-                        timer1.Enabled = true;
-                        avoidrepeat = true;
+                            if (checkBox1.Checked)
+                            {
+                                str += "+";
+                                if (textBox6.Text != "")
+                                {
+                                    list_print.Add(textBox6.Text);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("请保证输入对应加法符号！eg. +");
+                                    this.errorProvider1.SetError(this.textBox6, "请保证输入对应加法符号！eg. +");
+                                }
+                            }
+                            if (checkBox2.Checked)
+                            {
+                                str += "-";
+                                if (textBox7.Text != "")
+                                {
+                                    list_print.Add(textBox7.Text);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("请保证输入对应减法符号！eg. -");
+                                    this.errorProvider1.SetError(this.textBox7, "请保证输入对应减法符号！eg. -");
+                                }
+                            }
+                            if (checkBox3.Checked)
+                            {
+                                str += "*";
+                                if (textBox8.Text != "")
+                                {
+                                    list_print.Add(textBox8.Text);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("请保证输入对应乘法符号！eg. *");
+                                    this.errorProvider1.SetError(this.textBox8, "请保证输入对应乘法符号！eg. *");
+                                }
+                            }
+                            if (checkBox4.Checked)
+                            {
+                                str += "/";
+                                if (textBox9.Text != "")
+                                {
+                                    list_print.Add(textBox9.Text);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("请保证输入对应除法符号！eg. /");
+                                    this.errorProvider1.SetError(this.textBox9, "请保证输入对应除法符号！eg. /");
+                                }
+                            }
+                            if (checkBox5.Checked)
+                            {
+                                str += "^";
+                                if (textBox10.Text != "")
+                                {
+                                    list_print.Add(textBox10.Text);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("请保证输入对应乘方符号！eg. ^");
+                                    this.errorProvider1.SetError(this.textBox10, "请保证输入对应乘方符号！eg. ^");
+                                }
+                            }
+                            char[] arr = str.ToCharArray();
+                            string[] symbol_print = list_print.ToArray();
+                            if (symbol_print.Length != arr.Length)  //MYSRIO: 这段逻辑判断代码好评! 还有机智的str转char[]
+                            {
+                                MessageBox.Show("请保证运算范围和显示符号的对应！");
+                                this.errorProvider1.SetError(this.label3, "请保证运算范围和显示符号的对应！");
+                                this.errorProvider1.SetError(this.label11, "请保证运算范围和显示符号的对应！");
+                            }
+                            else
+                            {
+                                // MSYSRIO: 不进行异常处理差评, 我在上面加了
+                                QuestionGenerator generator = new QuestionGenerator(
+                                    num_range_low: int.Parse(textBox1.Text.Trim()),
+                                    num_range_high: int.Parse(textBox5.Text.Trim()),
+                                    use_fraction: double.Parse(textBox11.Text.Trim()),
+                                    MaxNodeCeiling: int.Parse(textBox12.Text.Trim()),
+                                    symbol_set: arr, symbol_print: symbol_print);
+                                // MSYRIO: 发现有无解的参数，烦
+                                try
+                                {
+                                    generator.Generate(int.Parse(textBox2.Text.Trim()));
+                                }
+                                catch(TimeoutException)
+                                {
+                                    MessageBox.Show("生成题目超时！该设置下无法生成足够数量的题目组合，请更改输入重试");
+                                    return;
+                                }
+
+                                Cnt = 0;
+                                var QA_pairs = generator.Get_QA_pairs();
+                                Q = QA_pairs.Item1;
+                                A = QA_pairs.Item2;
+                                textBox3.Text = Q[Cnt];//出的题目 
+
+                                //初始化
+                                right = 0;
+                                wrong = 0;
+                                //做题：进度条
+                                progressBar1.Maximum = a_c;//设置最大长度值
+                                progressBar1.Value = 0;//设置当前值
+                                progressBar1.Step = 1;
+                                //做题：开始计时
+                                timer1.Interval = 1000;//设置时间间隔为1秒（1000毫秒），覆盖构造函数设置的间隔
+                                currentCount = 21;
+                                timer1.Enabled = true;
+                                avoidrepeat = true;
+                            }
+
+                        }
                     }
-
+                    catch(Exception)
+                    {
+                        MessageBox.Show("请保证输入满足要求！\n输入范围需左边小于右边, 真分数使用比率为0~1, 符号使用个数0~10");
+                    }
                 }
-                
             }
         }
 
         private void textBox4_KeyDown(object sender, KeyEventArgs e)//做题：输入答案框
         {
-            if (e.KeyCode == Keys.Enter && textBox3.Text != "")//做题：每当按下回车时
+            if (e.KeyCode == Keys.Enter && textBox4.Text != "")//做题：每当按下回车时 // MYSRIO: 我觉得你想说text4(原来写的text3)
             {
-                if (Standardizer.Standardize_Number(textBox4.Text) == A[Cnt])   //直接调用Calucate这个方法计算result的值并与输入的值进行比较
+                if (Standardizer.Standardize_Number(textBox4.Text) == A[Cnt])   //直接与输入的值进行比较
                 {
                     right++;
                 }
@@ -263,13 +294,14 @@ namespace WindowsFormsApp2
                     currentCount = 21;//重新计时 
                 }
                 progressBar1.Value += 1;//进度条加一  
+                textBox4.Text = ""; //MYSRIO: 清空文本框
                 if (progressBar1.Value == int.Parse(textBox2.Text))
                 {
-                    MessageBox.Show("请点击提交！");
+                    MessageBox.Show("恭喜完成所有题目!请点击提交按钮查看成绩结算！");  // MYSRIO
                 }
                 textBox3.Text = "";//每次答完题后清空
             }
-            else if (e.KeyCode == Keys.Enter && textBox3.Text == "")
+            else if (e.KeyCode == Keys.Enter && textBox4.Text == "") // MYSRIO: 我觉得你想说text4(原来写的text3)
             {
                 MessageBox.Show("请输入答案！");
             }
@@ -348,12 +380,11 @@ namespace WindowsFormsApp2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Cnt == int.Parse(textBox2.Text))
+            if (Cnt == int.Parse(textBox2.Text)) //提交按钮
             {
                 timer1.Enabled = false;
                 Form3 history = new Form3();
                 history.ShowDialog();
-               
                 avoidrepeat = false;
             }
             else

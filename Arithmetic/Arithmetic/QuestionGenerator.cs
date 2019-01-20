@@ -72,8 +72,17 @@ namespace Arithmetic
             Expression expression = null;     // 当前表达式
             string expression_in_symbol = null;      // 当前表达式符号字符串
 
+            DateTime beforDT = DateTime.Now;
+
             while (generate_cnt > 0)
             {
+                
+                TimeSpan ts = DateTime.Now.Subtract(beforDT);
+                if(ts.TotalMilliseconds > Math.Max(generate_cnt * 10, 1000))
+                {
+                    throw new TimeoutException();
+                }
+
                 if (need_new_expression)      // 生成新的表达式符号
                 {
                     // generate a new expression
@@ -81,13 +90,10 @@ namespace Arithmetic
                     expression = generator.Generate(MaxNodeCeiling);
                     expression_in_symbol = Tree_to_Symbol_string(expression);
 
-                    // check if duplicated
-                    if (Expression_in_symbol.Contains(expression_in_symbol))
-                        continue;
+                    // check if need to be add
+                    if (! Expression_in_symbol.Contains(expression_in_symbol))
+                        Expression_in_symbol.Add(expression_in_symbol);
                 }
-
-                // if not duplicate, save this expression
-                Expression_in_symbol.Add(expression_in_symbol);
 
                 // 在当前符号表达式基础上生成多个数字表达式
                 // then start generation !
